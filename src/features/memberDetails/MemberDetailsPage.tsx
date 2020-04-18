@@ -41,7 +41,7 @@ const MemberDetailsPage: FC<Props> = (props) => {
         if (!id) return
         const userId = parseInt(id, 10)
         dispatch(getPostsDataAsync(userId))
-    }, [id, dispatch])
+    }, [id, memberDetails, dispatch])
 
     return (
         <div className="container has-padding-3">
