@@ -13,7 +13,8 @@
 ├─── api                : fetching functions
 ├─── app                : main <App> component
 ├─── components         : components that are reused in multiple places
-├─── features           : angular controllers
+├─── features           : redux toolkit features
+├─── models             : typescript types
 └─── utils              : utility functions
 ```
 
