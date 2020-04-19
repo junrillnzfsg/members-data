@@ -22,3 +22,8 @@
 
 -   `npm install` - install node dependencies
 -   `npm start` - start development server
+
+### Development Note
+
+-   [Redux Form](https://redux-form.com) has quite issue integrating with the new react lifecycle
+-   see [Github Issue](https://github.com/redux-form/redux-form/issues/3954)

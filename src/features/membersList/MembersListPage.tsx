@@ -1,8 +1,9 @@
 import React, { FC, useEffect } from 'react'
 import ProfileCard from 'components/ProfileCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMembersListAsync, selectMembersList } from './membersListSlice'
 import { Link } from 'react-router-dom'
+import { setPostsData } from 'features/postsDataList/postsDataListSlice'
+import { getMembersListAsync, selectMembersList } from './membersListSlice'
 
 interface OwnProps {}
 
@@ -14,6 +15,7 @@ const MembersListPage: FC<Props> = (props) => {
 
     useEffect(() => {
         dispatch(getMembersListAsync())
+        dispatch(setPostsData([]))
     }, [dispatch])
 
     return (

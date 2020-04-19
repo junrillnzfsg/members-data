@@ -1,14 +1,16 @@
-import React, { FC, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { FC, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import PostForm from 'components/PostForm'
+import { Member } from 'api/membersAPI'
+import { Post } from 'api/postsDataAPI'
 import {
     getMembersListAsync,
     selectMembersList,
-} from '../membersList/membersListSlice'
+} from 'features/membersList/membersListSlice'
+import PostsDataListPage from 'features/postsDataList/PostsDataListPage'
+import { createPostsDataAsync } from 'features/postsDataList/postsDataListSlice'
 import { selectMemberDetails, setMemberDetails } from './memberDetailsSlice'
-import { Member } from '../../api/membersAPI'
-import { getPostsDataAsync, selectPostsData } from '../postsData/postsDataSlice'
-import PostCard from '../../components/PostCard'
 
 interface OwnProps {}
 
@@ -18,10 +20,10 @@ const MemberDetailsPage: FC<Props> = (props) => {
     const { id } = useParams()
 
     const dispatch = useDispatch()
+    const [showPostForm, setShowPostForm] = useState(false)
 
     const membersList = useSelector(selectMembersList)
     const memberDetails = useSelector(selectMemberDetails)
-    const postsData = useSelector(selectPostsData)
 
     // retrieve members list
     useEffect(() => {
@@ -32,34 +34,44 @@ const MemberDetailsPage: FC<Props> = (props) => {
     useEffect(() => {
         if (!id) return
         const userId = parseInt(id, 10)
-        const member = membersList.find((member) => member.id === userId) || {}
+        const member = membersList.find((member) => member.id === userId)
+        if (!member) return
         dispatch(setMemberDetails(member))
     }, [id, membersList, dispatch])
 
-    // retrieve members post
-    useEffect(() => {
+    const handleSubmit = (post: Post) => {
         if (!id) return
-        const userId = parseInt(id, 10)
-        dispatch(getPostsDataAsync(userId))
-    }, [id, memberDetails, dispatch])
+        dispatch(createPostsDataAsync({ ...post, userId: parseInt(id, 10) }))
+    }
 
     return (
         <div className="container has-padding-3">
             <h4 className="is-size-1 has-text-centered">
                 {(memberDetails as Member).name} Posts
             </h4>
-            <div className="has-margin-t-3">
-                <button className="button is-info is-large is-fullwidth">
-                    Create New Post
-                </button>
+            <div className="content is-large has-margin-t-3 has-text-centered">
+                <Link to={`/`} className="button is-info has-margin-r-3">
+                    Back to Members List
+                </Link>
+                {!showPostForm && (
+                    <button
+                        className="button is-success"
+                        onClick={() => setShowPostForm(true)}
+                    >
+                        Create New Post
+                    </button>
+                )}
+                {showPostForm && (
+                    <button
+                        className="button is-danger"
+                        onClick={() => setShowPostForm(false)}
+                    >
+                        Cancel
+                    </button>
+                )}
             </div>
-            <div className="columns">
-                <div className="column">
-                    {postsData.map((post) => (
-                        <PostCard {...post} key={post.id} />
-                    ))}
-                </div>
-            </div>
+            {showPostForm && <PostForm onSubmit={handleSubmit} />}
+            <PostsDataListPage onUpdateList={() => setShowPostForm(false)} />
         </div>
     )
 }

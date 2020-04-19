@@ -1,13 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import membersListReducer from 'features/membersList/membersListSlice'
 import memberDetailsReducer from 'features/memberDetails/memberDetailsSlice'
-import postsDataReducer from '../features/postsData/postsDataSlice'
+import postsDataListReducer from 'features/postsDataList/postsDataListSlice'
+import postDataDetailsReducer from 'features/postDataDetails/postDataDetailsSlice'
+import commentsListReducer from 'features/commentsList/commentsListSlice'
 
 export const store = configureStore({
     reducer: {
         membersList: membersListReducer,
         memberDetails: memberDetailsReducer,
-        postsData: postsDataReducer,
+        postsDataList: postsDataListReducer,
+        postDataDetails: postDataDetailsReducer,
+        commentsList: commentsListReducer,
     },
 })
 
