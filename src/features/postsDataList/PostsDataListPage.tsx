@@ -32,7 +32,7 @@ const PostsDataListPage: FC<Props> = (props) => {
 
     useEffect(() => {
         props.onUpdateList()
-    }, [props, postsDataList])
+    }, [postsDataList])
 
     const handleDeletePost = (postId: number, userId: number) => {
         dispatch(deletePostsDataAsync(postId, userId))

@@ -20,8 +20,8 @@
 
 ### Get Started
 
--   `npm install` - install node dependencies
--   `npm start` - start development server
+-   `yarn install` - install node dependencies
+-   `yarn start` - start development server
 
 ### Development Note
 

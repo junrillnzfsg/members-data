@@ -43,7 +43,6 @@ const MemberDetailsPage: FC<Props> = (props) => {
         if (!id) return
         dispatch(createPostsDataAsync({ ...post, userId: parseInt(id, 10) }))
     }
-
     return (
         <div className="container has-padding-3">
             <h4 className="is-size-1 has-text-centered">
