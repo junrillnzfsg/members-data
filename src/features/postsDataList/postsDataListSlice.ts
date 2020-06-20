@@ -11,7 +11,7 @@ interface PostsDataState {
     value: Post[]
 }
 
-const initialState: PostsDataState = {
+export const initialState: PostsDataState = {
     value: [],
 }
 

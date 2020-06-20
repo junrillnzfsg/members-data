@@ -1,4 +1,4 @@
-import postsData, { setPostsData } from './postsDataListSlice'
+import postsData, { initialState, setPostsData } from './postsDataListSlice'
 
 const stateValue = [
     {
@@ -21,9 +21,6 @@ describe('Action creator test', () => {
 
 describe('Reducer test', () => {
     test('Should update the state on setPostsData', () => {
-        const initialState = {
-            value: [],
-        }
         const expectedState = {
             value: [stateValue],
         }

@@ -24,7 +24,7 @@ const MembersListPage: FC<Props> = (props) => {
             <div className="columns">
                 <div className="column">
                     {membersList.map((member) => (
-                        <Link to={`/member/${member.id}`}>
+                        <Link to={`/member/${member.id}`} key={member.id}>
                             <ProfileCard
                                 name={member.name}
                                 company={member.company.name}
