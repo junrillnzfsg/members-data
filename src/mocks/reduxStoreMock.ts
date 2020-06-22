@@ -1,3 +1,14 @@
+export const postsDataList = {
+    value: [
+        {
+            id: 1,
+            userId: 1,
+            title: 'Sample title',
+            body: 'Sample body',
+        },
+    ],
+}
+
 export default {
     membersList: {
         value: [
@@ -16,7 +27,5 @@ export default {
             name: 'John',
         },
     },
-    postsDataList: {
-        value: [],
-    },
+    postsDataList,
 }

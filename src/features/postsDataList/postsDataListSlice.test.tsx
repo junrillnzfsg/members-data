@@ -1,4 +1,11 @@
+import React from 'react'
+import * as ReactRouter from 'react-router'
+import ReactRedux, { Provider } from 'react-redux'
 import postsData, { initialState, setPostsData } from './postsDataListSlice'
+import { render, fireEvent, screen } from '@testing-library/react'
+import PostDataListPage from './PostsDataListPage'
+import reduxStoreMock, { postsDataList } from '../../mocks/reduxStoreMock'
+import configureStore from 'redux-mock-store'
 
 const stateValue = [
     {
@@ -8,6 +15,13 @@ const stateValue = [
         body: 'test body',
     },
 ]
+
+const mockStore = configureStore([])
+const store = mockStore(reduxStoreMock)
+
+jest.mock('react-redux', () => ({
+    useSelector: jest.fn(),
+}))
 
 describe('Action creator test', () => {
     test('Should return expected action on setPostsData', () => {
