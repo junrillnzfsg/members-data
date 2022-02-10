@@ -20,7 +20,7 @@
         "bulma-utilities": "^0.3.6",
         "clsx": "^1.1.0",
         "history": "^5.0.0",
-        "node-sass": "^4.13.1",
+        "node-sass": "^7.0.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-redux": "^7.2.0",
